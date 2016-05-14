@@ -29,3 +29,8 @@
     (membero [_ 'oldgolds _ 'snails _] hs)                   
     (nexto [_ _ _ 'horse _] [_ 'kools _ _ _] hs)          
     (nexto [_ _ _ 'fox _] [_ 'chesterfields _ _ _] hs))))
+
+
+(run 1 [q] (zebrao q))
+
+(dotimes [_ 100] (time (doall (run 1 [q] (zebrao q)))))
