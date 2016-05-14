@@ -205,5 +205,22 @@
   (run* [q] (sister 'Jack q)))
 
 
+(run* [q] (== q 5))
+(run* [q] (== q 5) (== q 4))
+(run* [q] (fresh [x y] (== [x 2] [1 y]) (== q [x y])))
+
+(run* [q] (fresh [x y] (== x y) (== q [x y])))
+(run* [q] (fresh [x y] (== x y) (== y 1) (== q [x y])))
+
+(with-dbs [facts fun-people] (run* [q] (fun q) (likes q 'Mary)))
+
+(with-dbs [family] (run* [q] (female q) (sibling 'Jack q)))
+
+(with-dbs [facts fun-people]
+  (run* [q]
+    (conde
+     ((fun q))
+     ((likes q 'Mary)))))
+
 
 
