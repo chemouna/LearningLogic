@@ -1,0 +1,82 @@
+(load "logic_tutorial/tut1")
+(in-ns 'logic-tutorial.tut1)
+(db-rel man x)
+ (def men
+         (db
+           [man 'Bob]
+           [man 'John]))
+(with-db men
+         (run 1 [q] (man q)))
+(with-db men
+         (run 2 [q] (man q)))
+(db-rel fun x)
+(with-db men (run 1 [q] (man q)))
+(with-db men (run 2 [q] (man q)))
+(with-db men (run 3 [q] (man q)))
+(db-rel fun x)
+(def fun-people (db [fun 'Bob]))
+(with-db [men fun-people] (run* [q] (man q)(fun q)))
+(with-dbs [men fun-people] (run* [q](man q)(fun q)))
+(db-rel women x)
+(def facts (db [women 'Lucy][women 'Mary]))
+(db-rel likes x y)
+(def facts (-> facts (db-fact likes 'Bob 'Mary)(db-fact likes 'John 'Lucy)))
+(with-dbs [men facts](run* [q] (likes 'Mary q)))
+(def facts (db-fact facts likes 'Mary 'Bobby))
+(def facts (db-fact facts likes 'Mary 'Bob))
+(with-dbs [men facts] (run* [q] (likes 'Mary q)))
+(with-dbs [men facts] (run* [q] (fresh [x y] (likes x y) (== q [x y]))))
+(with-dbs [men facts] (run* [q] (fresh [x y] (likes x y) (likes y x) (== q [x y]))))
+(with-dbs [men facts] (run* [q] (fresh [x y] (likes x y) (== q [x y]) (likes y x))))
+(with-db genealogy 
+ (load "logic_tutorial/tut1")
+(in-ns 'logic-tutorial.tut1)
+(with-dbs [men facts] (run* [q] (fresh [x y] (likes x y) (== q [x y]) (likes y x))))
+(in-ns 'logic-tutorial.tut1)
+(db-rel man x)
+(def men
+                 #_=>          (db
+                 #_=>            [man 'Bob]
+                 #_=>            [man 'John]))
+(with-db men
+                 #_=>          (run 1 [q] (man q)))
+(with-db men
+                 #_=>          (run 2 [q] (man q)))
+(db-rel fun x)
+(with-db men (run 1 [q] (man q)))
+with-db men (run 2 [q] (man q)))
+with-db men (run 2 [q] (man q))
+(with-db men (run 2 [q] (man q)))
+(with-db men (run 3 [q] (man q)))
+(db-rel fun x)
+(def fun-people (db [fun 'Bob]))
+(with-db [men fun-people] (run* [q] (man q)(fun q)))
+(with-dbs [men fun-people] (run* [q](man q)(fun q)))
+(with-db [men fun-people] (run* [q] (man q)(fun q)))
+(with-dbs [men fun-people] (run* [q](man q)(fun q)))
+(db-rel women x)
+(def facts (db [women 'Lucy][women 'Mary]))
+(db-rel likes x y)
+(def facts (-> facts (db-fact likes 'Bob 'Mary)(db-fact likes 'John 'Lucy)))
+(with-dbs [men facts](run* [q] (likes 'Mary q)))
+(def facts (db-fact facts likes 'Mary 'Bobby))
+(def facts (db-fact facts likes 'Mary 'Bob))
+(with-dbs [men facts] (run* [q] (likes 'Mary q)))
+(with-dbs [men facts] (run* [q] (fresh [x y] (likes x y) (== q [x y]))))
+(with-dbs [men facts] (run* [q] (fresh [x y] (likes x y) (likes y x) (== q [x y]))))
+(def genealogy
+         (-> genealogy
+           (db-fact parent 'George 'John)))
+(def genealogy (-> genealogy (db-fact parent 'George 'John)))
+(def genealogy (db [parent 'John 'Bobby][male 'Bobby]))
+(with-db genealogy
+         (run* [q]
+           (son q 'John)))
+ (def genealogy
+         (-> genealogy
+           (db-fact parent 'George 'John)))
+ (load "logic_tutorial/tut1")
+(db [man 'Ali])
+(with-db men (run 1 [q] (man q)))
+(with-db men (run 4 [q] (man q)))
+(def men (db 
